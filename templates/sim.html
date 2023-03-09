@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulator</title>
+    <style>
+      table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px;
+    font-size: 12px;
+    border: none;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+  .tab{width: 200px;
+    text-align: center;}
+
+  
+       
+
+
+    </style>
+   
+</head>
+<body>
+    <form action="/">{%csrf_token%}<INPUT TYPE="submit" VALUE="Back"></form><br>
+      <!-- {% load custom_template_tags %}
+      {% setvar 0 as flag %} -->
+    <h1>Welcome to Simulator</h1>
+
+
+    {% if messages %}
+      <ul class="messages">
+      {% for message in messages %}
+        <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <hr>
+    <!-- trying to use if not -->
+    {% if ad %}
+    {% else %}
+    <form action="/totalProcess/" method="POST">{%csrf_token%}
+    <label for="pNum">No. of Processes</label>
+    <input type="number" id="pNum" name="pNum" max="10">&nbsp; &nbsp;
+    <input type="submit" name="submit" id="submit"><br><br>
+    </form>
+    {% endif %}
+
+    <form action="/addProcess/" method="POST"> {% csrf_token  %}
+    <label for="pID">Process ID</label>
+    <input type="number" name="pID" id="pID" min="1" max="10">&nbsp;&nbsp;
+    <label for="aT">Arrival Time</label>
+    <input type="number" id="aT" name="aT" min="0">&nbsp; &nbsp;
+    <label for="bT">Burst Time</label>
+    <input type="number" name="bT" id="bT" min="0">&nbsp;&nbsp;
+    <input type="submit" name="Add Process" value="Add">&nbsp;&nbsp;
+    </form><br>
+    <br>
+
+    <!-- <div class="dropdown">
+        <button class="dropbtn">Dropdown</button>
+        <div class="dropdown-content">
+          <a href="#">FCFS</a>
+          <a href="#">SJF</a>
+          <a href="#">SRTF</a>
+          <a href="#">RRB</a>
+          <a href="#">Prioity</a>
+        </div>
+      </div> -->
+    <form action="/deleteAll/" method="POST"> {% csrf_token %}
+        <input type="submit" name="Delete" value="Delete All">
+    </form> 
+   
+    <br><hr><br>
+    <div style="overflow-y: auto;">
+    <table>
+        <tr>
+            <td>Process ID</td>
+            <td>Arrival Time</td>
+            <td>Burst Time</td>
+        </tr>
+        {%if p1%}
+        {% for p in p1 %}
+        <tr>
+            <td>{{p.pID}}</td>
+            <td>{{p.aT}}</td>
+            <td>{{p.bT}}</td>
+            <td><form action="/deleteProcess/{{p.id}}/" method="POST"> {% csrf_token %}
+                <input type="submit" name="delete" value="delete">
+            </form></td>
+        </tr>
+        {% endfor %}
+        {%endif%}
+        
+    </table>
+    </div>
+    <hr><br>
+    <div>
+    <form action="/cal_fcfs/" method="POST">{%csrf_token%}
+      <input type="submit" value="Simulate FCFS" name="cal_fcfs"></form>
+      &nbsp; 
+    <form action="/cal_sjf/" method="POST">{%csrf_token%}
+      <input type="submit" value="Simulate SJF" name="cal_sjf"></form>
+      &nbsp;
+    <form action="/cal_srtf/" method="POST">{%csrf_token%}
+      <input type="submit" value="Simulate SRTF" name="cal_srtf"></form>
+      &nbsp;
+    <form action="/cal_rr/" method="POST">{%csrf_token%}
+      
+      <label for="tq">Time Qauntum</label>
+      <input type="number" name="tq" id="'tq">
+     
+      <input type="submit" value="Simulate RR" name="cal_rr"></form>
+      &nbsp;  
+    </div>
+
+    <div style="overflow-y: auto;">
+      <table style="width: 45%; display: inline-block; margin-right: 1px;">
+          <tr>
+              <th class="tab">Process ID</th>
+              <th class="tab">Arrival Time</th>
+              <th class="tab">Burst Time</th>
+          </tr>
+         
+          {% for p in pDict %}
+          <tr>
+             <td class="tab">{{p.pID}}</td>
+              <td class="tab">{{p.aT}}</td>
+             <td class="tab">{{p.bT}}</td>
+          </tr>
+          {% endfor %}
+        
+          </table>
+
+          <table style="width: 45%; display: inline-block; margin-left: -42px;">
+          <tr>
+              <th class="tab">Completion Time</th>
+              <th class="tab">Turn Around Time</th>
+              <th class="tab">Waiting Time</th>
+              <th class="tab">Response Time</th>
+          </tr>
+         
+          {%for a in cd%}
+          <tr>
+            <td class="tab">{{a.cT}}</td>
+            <td class="tab">{{a.tAT}}</td>
+            <td class="tab">{{a.wT}}</td>
+            <td class="tab">{{a.rt}}</td>
+          </tr>
+          {%endfor%}
+         
+          
+      </table>
+      <br>
+      <!-- {%if avg%}
+      {{avg}}
+      {%endif%}
+      {{q}} -->
+      {% if avg%}
+      <div>
+        {%for ag in avg%}
+        <h4>Avg waiting time: {{ag.avg_proc_wt}}</h4>
+        <h4>Avg turnaround time: {{ag.avg_proc_tat}}</h4>
+        {%endfor%}
+      </div>
+      {%endif%}
+      </div>
+     
+
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- <link rel="stylesheet" href="style1.css"> -->
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+    <link rel="stylesheet" href="{% static 'about.css'%}">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <title>OS Virtual Lab</title>
+</head>
+
+<body>
+    <!-- <section class="header" style="max-height: 10vh;"> -->
+        <nav style="background-color: black;">
+            <a href="/">OS LAB</a>
+            <div class="nav-links" id="navLinks">
+                <i class="fas fa-window-close" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="/">HOME</a></li>
+                    <!-- <li><a href="docs.html">DOCS</a></li> -->
+                    <!-- <li><a href="ganttcharts.html">SIMULATOR</a></li> -->
+                    <li><a href="">ABOUT</a></li>
+                </ul>
+            </div>
+            <i class="fas fa-bars" onclick="showMenu()"></i>
+        </nav>
+
+        
+    <!-- </section> -->
+
+   
+
+
+
+
+
+    
+    <section class="contact" id="contact">
+        <script src="https://kit.fontawesome.com/e0083a121f.js" crossorigin="anonymous"></script>
+        
+        <div class="card">
+            <img src="{%static 'raxit.jpg'%}" alt="Raxit" style="width:100%">
+            <h2>Raxit Gohel</h2>
+            <p class="title">Back-end & Algorithms</p>
+            <p>20BCP192</p>
+          </div>
+
+        <div class="card">
+            <img src="{%static 'fenil1.jpeg'%}" alt="Fenil" style="width:100%">
+            <h2>Fenil Ponkiya</h2>
+            <p class="title">Front-end</p>
+            <p>20BCP190</p>
+          </div>
+
+          <div class="card">
+            <img src="{%static 'mitul.jpg'%}" alt="Mitul" style="width:100%">
+            <h2>Mitul Ambaliya</h2>
+            <p class="title">Algorithms</p>
+            <p>20BCP206</p>
+          </div>
+        
+          <div class="card">
+            <img src="{%static 'vishwam.jpg'%}" alt="Vishwam" style="width:100%">
+            <h2>Vishwam Patel</h2>
+            <p class="title">Documentation</p>
+            <p>20BCP187</p>
+          </div>
+
+          <div class="card">
+            <img src="{%static 'purvang.jpeg'%}" alt="Purvang" style="width:100%">
+            <h2>Purvang Maheria</h2>
+            <p class="title">Documentation</p>
+            <p>20BCP209</p>
+          </div>
+
+
+    </section>
+    
+
+  
+
+    <script>
+        var navLinks = document.getElementById("navLinks");
+        function showMenu() {
+            navLinks.style.right = "0";
+        }
+
+        function hideMenu() {
+            navLinks.style.right = "-200px";
+        }
+
+        function gotoDocs(){
+            location.href = ("docs.html");
+        }
+    </script>
+
+    <!-- animation for cards -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        offset: 100, // offset (in px) from the original trigger point
+        duration: 800
+      }
+      );
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="{% static 'style1.css'%}">
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <title>OS Virtual Lab</title>
+</head>
+
+<body>
+    <!-- <section class="header" style="max-height: 10vh;"> -->
+        <nav style="background-color: black;">
+            <a href="/">OS LAB</a>
+            <div class="nav-links" id="navLinks">
+                <i class="fas fa-window-close" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="/">HOME</a></li>
+                    <!-- <li><a href="docs.html">DOCS</a></li> -->
+                    <!-- <li><a href="sim.html">SIMULATOR</a></li>
+                    <li><a href="about.html">ABOUT</a></li> -->
+                </ul>
+            </div>
+            <i class="fas fa-bars" onclick="showMenu()"></i>
+        </nav>
+
+        
+    <!-- </section> -->
+
+   
+
+
+
+
+
+    <section class="cta" data-aos="zoom-in-up">
+        <h1> FCFS - First Come First Served</h1>
+        <br>
+        <p style="color: white;">First come first serve (FCFS) scheduling algorithm simply schedules the jobs according to their arrival time. The job which comes first in the ready queue will get the CPU first. The lesser the arrival time of the job, the sooner will the job get the CPU.</p>
+        <!-- <a href="algo.html" class="hero-btn">Click Here</a> -->
+    </section>
+    <section class="cta" data-aos="zoom-in-up">
+        <h1> SJF - Shortest Job First</h1>
+        <br>
+        <p style="color: white;">Shortest Job First (SJF) is an algorithm in which the process having the smallest execution time is chosen for the next execution. This scheduling method can be preemptive or non-preemptive.
+            In non-preemptive scheduling, once the CPU cycle is allocated to process, the process holds it till it reaches a waiting state or terminated.</p>
+        <!-- <a href="algo.html" class="hero-btn">Click Here</a> -->
+    </section>
+    <section class="cta" data-aos="zoom-in-up">
+        <h1> SRTF - Shortest Remaining Time First</h1>
+        <br>
+        <p style="color: white;">This Algorithm is the preemptive version of SJF scheduling. In the SRTF scheduling algorithm, the execution of any process can be stopped after a certain amount of time. On arrival of every process, the short-term scheduler schedules those processes from the list of available processes & running processes that have the least remaining burst time.
+            The main advantage of the SRTF algorithm is that it makes the processing of the jobs faster than the SJF algorithm.</p>
+        <!-- <a href="algo.html" class="hero-btn">Click Here</a> -->
+    </section>
+    <section class="cta" data-aos="zoom-in-up">
+        <h1> RR - Round Robin</h1>
+        <br>
+        <p style="color: white;">
+
+            Round Robin is the preemptive process scheduling algorithm.
+            
+            Each process is provided a fix time to execute, it is called a quantum.
+            
+            Once a process is executed for a given time period, it is preempted and other process executes for a given time period.
+            
+            Context switching is used to save states of preempted processes.
+        </p>
+        <!-- <a href="algo.html" class="hero-btn">Click Here</a> -->
+    </section>
+    
+    
+
+  
+
+    <script>
+        var navLinks = document.getElementById("navLinks");
+        function showMenu() {
+            navLinks.style.right = "0";
+        }
+
+        function hideMenu() {
+            navLinks.style.right = "-200px";
+        }
+
+        function gotoDocs(){
+            location.href = ("docs.html");
+        }
+    </script>
+
+    <!-- animation for cards -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        offset: 100, // offset (in px) from the original trigger point
+        duration: 800
+      }
+      );
+    </script>
+</body>
+
+</html>
