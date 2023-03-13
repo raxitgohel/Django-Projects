@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBMS PROJECT</title>
+    <style>
+
+input[type=text] {
+  width: 150px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 2px;
+  font-size: 12px;
+  background-color: white;
+  background-image: url('searchicon.png');
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 6px 10px 6px 20px;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+  width: 100%;
+}
+
+        table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+    </style>
+</head>
+<body>
+    <button type="submit">
+        <a href="/">Home</a>
+    </button>
+    
+    <h1>Search For Books by SQL Queries</h1>
+    
+    <form action="/addEntry/" method="post"> {%csrf_token%}
+        <div >
+            <label for="BookID">BookID</label>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+            <input type="text"  placeholder="for eg. B001" name="BookID" id="BookID">
+        </div><br>
+        <div>
+            <label for="AuthorID">AuthorID</label>&nbsp; &nbsp;&nbsp; &nbsp;
+            <input type="text"  placeholder="for eg. A001" name="AuthorID" id="AuthorID">
+        </div><br>
+        <div>
+            <label for="BookName">BookName</label>&nbsp; &nbsp;
+            <input type="text"  placeholder="wings of fire" name="BookName" id="BookName">
+        </div><br>
+        <div>
+            <label for="AuthorName">AuthorName</label>&nbsp;
+            <input type="text"  placeholder="APJ Abdul Kalam" name="AuthorName" id="AuthorName">
+        </div><br>
+        <div>
+            <label for="Status">Status</label>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+            <input type="text" placeholder="Issued or not?" name="Status">
+        </div><br>
+        <div>
+            <button type="submit"> 
+              <i>Add Entry</i>
+            </button>
+          </div>
+      </form>
+      <br><hr>
+      <div>
+      <table>
+        <tr>
+            <td>BookID</td>
+            <td>AuthorID</td>
+            <td>BookName</td>
+            <td>AuthorName</td>
+            <td>Status</td>
+        </tr>
+        {% if bk %}
+        {%for a in bk%}
+        <tr>
+            <td>{{a.bookID}}</td>
+            <td>{{a.authorID}}</td>
+            <td>{{a.bookName}}</td>
+            <td>{{a.authorName}}</td>
+            <td>{{a.status}}</td>
+        </tr>
+        {%endfor%}
+        {%endif%}
+       </table>
+      </div>
+      
+      <br><hr><br>
+      
+      <form action="/deleteAll/" method="post"> {%csrf_token%}
+          <input type="submit" name="Delete all" value="Delete All">
+      </form>
+      <br><br><hr><br><br>
+
+      <form action="/getSearch/" method="post"> {%csrf_token%}
+        <div><label for="query">Write Query:</label><br>
+        <textarea name="query" id="query" cols="60" rows="2">SELECT * FROM app_book</textarea></div>
+        <br><input type="submit" name="submit">
+    </form>
+    <br>
+    <hr>
+    <br>
+
+    <!-- {{bk1}} -->
+      <table>
+      {% if bk1 %}
+        {%for a in bk1%}
+        <tr>
+            {%if a.bookID%}
+            <td>{{a.bookID}}</td>
+            {%endif%}
+            {%if a.authorID%}
+            <td>{{a.authorID}}</td>
+            {%endif%}
+            {%if a.bookName%}
+            <td>{{a.bookName}}</td>
+            {%endif%}
+            {%if a.authorName%}
+            <td>{{a.authorName}}</td>
+            {%endif%}
+            
+            <td>{{a.status}}</td>
+            
+        </tr>
+        {%endfor%}
+        {%endif%}
+        </table>
+        <br>
+        <section>
+        <details>
+            <summary>more data</summary>
+            <p>some data that might have been missed: {{bk1}}</p>
+        </details>
+        </section>
+
+
+
+</body>
+</html>
