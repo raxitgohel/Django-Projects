@@ -11,10 +11,10 @@ To run this Simulator:
  `python manage.py runserver`
 
 
-Contributers and thier roles:
+Contributers and their roles:
 
-Raxit Gohel :- Backend and coded some CPU scheduling algorithms
-Fenil Ponkiya :- Frontend
-Mitul Ambaliya :- Coded rest of algorithms
-Vishvam Patel :- Documentation
-Puravang Maheria :- Documentation
+Raxit Gohel : Backend and coded some CPU scheduling algorithms,
+Fenil Ponkiya : Frontend,
+Mitul Ambaliya : Coded rest of algorithms,
+Vishvam Patel : Documentation,
+Puravang Maheria : Documentation
